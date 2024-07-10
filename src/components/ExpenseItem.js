@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { TiDelete } from 'react-icons/ti';
 import { AppContext } from '../context/AppContext';
 
 const ExpenseItem = (props) => {
@@ -25,12 +24,42 @@ const ExpenseItem = (props) => {
 
     }
 
+    const buttonAddStyle = {
+        width: '25px',
+        height: '25px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        backgroundColor: '#6AA121',
+        color: 'white',
+        border: 'none',
+        borderRadius: '50%', 
+        fontSize: '30px',
+        cursor: 'pointer'
+    };
+
+    const buttonMinusStyle = {
+        width: '25px',
+        height: '25px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        backgroundColor: 'red',
+        color: 'white',
+        border: 'none',
+        borderRadius: '50%', 
+        fontSize: '30px',
+        cursor: 'pointer'
+    };
+
     return (
         <tr>
         <td>{props.name}</td>
         <td>£{props.cost}</td>
-        <td><button onClick={event=> increaseAllocation(props.name)}>+</button></td>
-        <td><TiDelete size='1.5em' onClick={handleDeleteExpense}></TiDelete></td>
+        <td><button onClick={event=> increaseAllocation(props.name)} style={buttonAddStyle}>+</button></td>
+        <td><button onClick={event=> handleDeleteExpense()} style={buttonMinusStyle}>-</button></td>
         </tr>
     );
 };
