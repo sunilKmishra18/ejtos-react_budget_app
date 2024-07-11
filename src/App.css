@@ -36,4 +36,49 @@
     transform: rotate(360deg);
   }
 }
+.currency-dropdown-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #1af016; /* Set your desired background color */
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle box shadow */
+}
 
+.currency-label {
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.currency-dropdown {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #1af016;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #fff;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><path fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M4 6l4 4 4-4'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+.currency-dropdown option {
+  background-color: #8bc34a;
+  color: white;
+  padding: 10px;
+}
+
+.currency-dropdown:focus {
+  border-color: #66afe9;
+  outline: none;
+  color: #fff;
+}
