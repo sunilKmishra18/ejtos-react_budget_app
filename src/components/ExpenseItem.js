@@ -1,20 +1,15 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
+import { FcPlus } from "react-icons/fc";
+import { FaMinusCircle } from "react-icons/fa";
 
 const ExpenseItem = (props) => {
-    const { dispatch } = useContext(AppContext);
+    const { dispatch, currency } = useContext(AppContext);
 
-    const handleDeleteExpense = () => {
-        dispatch({
-            type: 'DELETE_EXPENSE',
-            payload: props.id,
-        });
-    };
-
-    const increaseAllocation = (name) => {
+    const increaseAllocation = (name, cost) => {
         const expense = {
             name: name,
-            cost: 10,
+            cost: cost,
         };
 
         dispatch({
@@ -24,42 +19,17 @@ const ExpenseItem = (props) => {
 
     }
 
-    const buttonAddStyle = {
-        width: '25px',
-        height: '25px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center',
-        backgroundColor: '#6AA121',
-        color: 'white',
-        border: 'none',
-        borderRadius: '50%', 
-        fontSize: '30px',
-        cursor: 'pointer'
-    };
-
-    const buttonMinusStyle = {
-        width: '25px',
-        height: '25px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center',
-        backgroundColor: 'red',
-        color: 'white',
-        border: 'none',
-        borderRadius: '50%', 
-        fontSize: '30px',
-        cursor: 'pointer'
-    };
-
     return (
         <tr>
-        <td>{props.name}</td>
-        <td>£{props.cost}</td>
-        <td><button onClick={event=> increaseAllocation(props.name)} style={buttonAddStyle}>+</button></td>
-        <td><button onClick={event=> handleDeleteExpense()} style={buttonMinusStyle}>-</button></td>
+            <td>{props.name}</td>
+            <td>{currency}{props.cost}</td>
+            <td><FcPlus size='1.5em' onClick={event => increaseAllocation(props.name, 10)}></FcPlus></td><td>
+                <FaMinusCircle
+                    size='1.5em'
+                    onClick={event => increaseAllocation(props.name, -10)}
+                    style={{ color: 'red' }}
+                />
+            </td>
         </tr>
     );
 };

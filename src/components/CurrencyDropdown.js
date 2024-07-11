@@ -1,43 +1,35 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
+import '../App.css'; // Import the CSS file
 
 const CurrencyDropdown = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const { currency, dispatch } = useContext(AppContext);
 
-  const options = [
-    { value: '1', label: '$ Dollar' },
-    { value: '2', label: '£ Pound' },
-    { value: '3', label: '€ Euro' },
-    { value: '3', label: '₹ Ruppee' },
-  ];
-
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleSelect = (option) => {
-    setSelectedOption(option);
-    setIsOpen(false);
+  const handleCurrencyChange = (newCurrency) => {
+    dispatch({ type: 'CHG_CURRENCY', payload: newCurrency });
   };
 
   return (
-    <div className='alert alert-primary'>
-     <span>Currency ({selectedOption})</span>
-    <div className="dropdown">
-      <button onClick={handleToggle} className="dropdown-toggle">
-        {selectedOption ? selectedOption.label : 'Select an option'}
-      </button>
-      {isOpen && (
-        <ul className="dropdown-menu">
-          {options.map((option) => (
-            <li key={option.value} onClick={() => handleSelect(option)}>
-              {option.label}
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className='currency-dropdown-container'>
+      <label
+        htmlFor='currencyDropdown'
+        style={{ marginRight: '2rem' }}
+        className='currency-label'
+      >
+        Currency
+      </label>
+      <select
+        id='currencyDropdown'
+        value={currency}
+        onChange={(e) => handleCurrencyChange(e.target.value)}
+        className='currency-dropdown'
+      >
+        <option value='$'>$ Dollar</option>
+        <option value='£'>£ Pound</option>
+        <option value='€'>€ Euro</option>
+        <option value='₹'>₹ Rupee</option>
+      </select>
     </div>
-     </div>
   );
 };
 
